@@ -1,0 +1,65 @@
+<div class="relative">
+  <div class="loader-content" *ngIf="loading">
+    <div></div>
+  </div>
+
+  <div class="" style="min-height: 200px">
+    <form
+      *ngIf="loadedForm"
+      [formGroup]="form"
+      (ngSubmit)="store()"
+      autocomplete="off"
+    >
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <span class="me-1" *ngIf="edit?.id">Editar</span>
+          <span class="me-1" *ngIf="!edit?.id">Crear</span>
+          depreciación
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 mb-2">
+            <label for="">Año</label>
+            <input
+              maxlength="4"
+              formControlName="year_depreciacion"
+              type="text"
+              class="form-control"
+             
+            />
+            <div *ngIf="validate('year_depreciacion').valid" class="text-error">
+              {{ validate("year_depreciacion").error }}
+            </div>
+          </div>
+          <div class="col-12 mb-2">
+            <label for="">Tipo activo</label>
+
+            <ng-select formControlName="tipo_activo_id">
+              <ng-option *ngFor="let emp of tiposactivos" [value]="emp.id">{{
+                emp.tipo
+              }}</ng-option>
+            </ng-select>
+
+            <div *ngIf="validate('tipo_activo_id').valid" class="text-error">
+              {{ validate("tipo_activo_id").error }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <!-- (click)="modal.close('Close click')" -->
+</div>

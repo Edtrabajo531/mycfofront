@@ -1,0 +1,85 @@
+<div class="relative">
+  <div class="loader-content" *ngIf="loading">
+    <div></div>
+  </div>
+
+  <div class="" style="min-height: 200px">
+    <form
+      *ngIf="loadedForm"
+      [formGroup]="form"
+      (ngSubmit)="store()"
+      autocomplete="off"
+    >
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <span class="me-1" *ngIf="edit?.id">Editar</span>
+          <span class="me-1" *ngIf="!edit?.id">Crear</span>
+          Gasto operativo
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+ 
+
+          <div class="col-4 mb-2">
+            <label for="">Rubro</label>
+            <input
+            appAutoFocus
+              formControlName="rubro"
+              type="text"
+              class="form-control"
+              maxlength="30"
+            />
+            <div *ngIf="validate('rubro').valid" class="text-error">
+              {{ validate("rubro").error }}
+            </div>
+          </div>
+          <div class="col-4 mb-2">
+            <label for="">Mensual</label>
+            <input
+              formControlName="mensual"
+              type="text"
+              class="form-control"
+              maxlength="20"
+            />
+            <div *ngIf="validate('mensual').valid" class="text-error">
+              {{ validate("mensual").error }}
+            </div>
+          </div>
+
+          <div class="col-4 mb-2">
+            <label for="">Empresa</label>
+            
+            <select readonly formControlName="empresa_id" class="form-control">
+              <option *ngFor="let e of empresas" [value]="e.id">
+                {{ e.nombre }}
+              </option>
+            </select>
+            <!-- <ng-select appAutoFocus formControlName="empresa_id">
+              <ng-option *ngFor="let emp of empresas" [value]="emp.id"
+                >{{ emp.nombre }}
+              </ng-option>
+            </ng-select> -->
+            <div *ngIf="validate('empresa_id').valid" class="text-error">
+              {{ validate("empresa_id").error }}
+            </div>
+          </div>
+      
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <!-- (click)="modal.close('Close click')" -->
+</div>

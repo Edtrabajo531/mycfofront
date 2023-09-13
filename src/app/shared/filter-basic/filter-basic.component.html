@@ -1,0 +1,39 @@
+<div class="row mb-2" style="width: 100%">
+  <!-- <div class="col-xxl-3 col-xl-3 col-md-4 col-3" *ngIf="exist('desde')">
+    <div class="input-group mb-1">
+      <span class="input-group-text">Desde</span> 
+      <input name="desde" type="date" class="form-control" [value]="desde" />
+    </div>
+  </div>
+  <div class="col-xxl-3 col-xl-3 col-md-4 col-3" *ngIf="exist('hasta')">
+    <div class="input-group mb-1">
+      <span class="input-group-text">Hasta</span>
+      <input name="hasta" type="date" class="form-control" [value]="hasta"/>
+    </div>
+  </div> -->
+
+  <div class="col-xxl-4 col-xl-4 col-lg-6" *ngIf="models?.empresa_id">
+    <label for="">Empresa</label>
+
+    <ng-select
+      [items]="data_filtros.empresas"
+      bindLabel="nombre"
+      bindValue="id"
+      [(ngModel)]="empresa_id"
+      
+    >
+    </ng-select>
+
+    <input type="hidden" name="empresa_id" [value]="empresa_id" />
+
+    <!-- <div *ngIf="validate('producto_id').valid" class="text-error">
+      {{ validate("producto_id").error }}
+    </div> -->
+  </div>
+
+  <div class="col-2" *ngIf="btnSearch()">
+    <button type="submit" class="btn btn-primary mt-4">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</div>

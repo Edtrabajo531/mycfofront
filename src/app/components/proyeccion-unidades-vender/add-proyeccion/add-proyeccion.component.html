@@ -1,0 +1,261 @@
+<div class="relative">
+  <div class="loader-content" *ngIf="loading">
+    <div></div>
+  </div>
+
+  <div class="" style="min-height: 200px">
+    <form
+      *ngIf="loadedForm"
+      [formGroup]="form"
+      (ngSubmit)="store()"
+      autocomplete="off"
+    >
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <span class="me-1" *ngIf="edit?.id">Editar</span>
+          <span class="me-1" *ngIf="!edit?.id">Crear</span>
+          proyección
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+       
+    
+          <div class="col-xxl-4 col-xl-4 col-lg-6 mb-2">
+            <label for="">Producto</label>
+
+            <ng-select
+              appAutoFocus
+              [items]="productos"
+              bindLabel="nombre"
+              bindValue="id"
+              formControlName="producto_id"
+            >
+            </ng-select>
+
+            <div *ngIf="validate('producto_id').valid" class="text-error">
+              {{ validate("producto_id").error }}
+            </div>
+          </div>
+          <div class="col-xxl-4 col-xl-4 col-lg-6 mb-2">
+            <label for="">Empresa</label>
+            <select
+              readonly
+              formControlName="empresa_id"
+              name=""
+              class="form-control"
+            >
+              <option value="" *ngFor="let emp of empresas">
+                {{ emp.nombre }}
+              </option>
+            </select>
+            <div *ngIf="validate('empresa_id').valid" class="text-error">
+              {{ validate("empresa_id").error }}
+            </div>
+          </div>
+        </div>
+
+        <h5 class="">Meses</h5>
+
+        <div class="row">
+          <div class="col-2 mb-2">
+            <label for="">Mes (1)</label>
+            <input formControlName="mes1" type="text" class="form-control" />
+            <div *ngIf="validate('mes1').valid" class="text-error">
+              {{ validate("mes1").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (2)</label>
+            <input formControlName="mes2" type="text" class="form-control" />
+            <div *ngIf="validate('mes2').valid" class="text-error">
+              {{ validate("mes2").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (3)</label>
+            <input formControlName="mes3" type="text" class="form-control" />
+            <div *ngIf="validate('mes3').valid" class="text-error">
+              {{ validate("mes3").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (4)</label>
+            <input formControlName="mes4" type="text" class="form-control" />
+            <div *ngIf="validate('mes4').valid" class="text-error">
+              {{ validate("mes4").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (5)</label>
+            <input formControlName="mes5" type="text" class="form-control" />
+            <div *ngIf="validate('mes5').valid" class="text-error">
+              {{ validate("mes5").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (6)</label>
+            <input formControlName="mes6" type="text" class="form-control" />
+            <div *ngIf="validate('mes6').valid" class="text-error">
+              {{ validate("mes6").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (7)</label>
+            <input formControlName="mes7" type="text" class="form-control" />
+            <div *ngIf="validate('mes7').valid" class="text-error">
+              {{ validate("mes7").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (8)</label>
+            <input formControlName="mes8" type="text" class="form-control" />
+            <div *ngIf="validate('mes8').valid" class="text-error">
+              {{ validate("mes8").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (9)</label>
+            <input formControlName="mes9" type="text" class="form-control" />
+            <div *ngIf="validate('mes9').valid" class="text-error">
+              {{ validate("mes9").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (10)</label>
+            <input formControlName="mes10" type="text" class="form-control" />
+            <div *ngIf="validate('mes10').valid" class="text-error">
+              {{ validate("mes10").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (11)</label>
+            <input formControlName="mes11" type="text" class="form-control" />
+            <div *ngIf="validate('mes11').valid" class="text-error">
+              {{ validate("mes11").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Mes (12)</label>
+            <input formControlName="mes12" type="text" class="form-control" />
+            <div *ngIf="validate('mes12').valid" class="text-error">
+              {{ validate("mes12").error }}
+            </div>
+          </div>
+        </div>
+        <h5 class="">Años</h5>
+        <div class="row">
+          <!-- años -->
+          <div class="col-2 mb-2">
+            <label for="">Año (1)</label>
+            <input
+              readonly
+              [value]="sumaMeses()"
+              type="text"
+              class="form-control"
+            />
+            <!-- <div *ngIf="validate('year1').valid" class="text-error">
+              {{ validate("year1").error }}
+            </div> -->
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Año (2)</label>
+            <input formControlName="year2" type="text" class="form-control" />
+            <div *ngIf="validate('year2').valid" class="text-error">
+              {{ validate("year2").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Año (3)</label>
+            <input formControlName="year3" type="text" class="form-control" />
+            <div *ngIf="validate('year3').valid" class="text-error">
+              {{ validate("year3").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Año (4)</label>
+            <input formControlName="year4" type="text" class="form-control" />
+            <div *ngIf="validate('year4').valid" class="text-error">
+              {{ validate("year4").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Año (5)</label>
+            <input formControlName="year5" type="text" class="form-control" />
+            <div *ngIf="validate('year5').valid" class="text-error">
+              {{ validate("year5").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Año (6)</label>
+            <input formControlName="year6" type="text" class="form-control" />
+            <div *ngIf="validate('year6').valid" class="text-error">
+              {{ validate("year6").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Año (7)</label>
+            <input formControlName="year7" type="text" class="form-control" />
+            <div *ngIf="validate('year7').valid" class="text-error">
+              {{ validate("year7").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Año (8)</label>
+            <input formControlName="year8" type="text" class="form-control" />
+            <div *ngIf="validate('year8').valid" class="text-error">
+              {{ validate("mes8").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Año (9)</label>
+            <input formControlName="year9" type="text" class="form-control" />
+            <div *ngIf="validate('year9').valid" class="text-error">
+              {{ validate("year9").error }}
+            </div>
+          </div>
+
+          <div class="col-2 mb-2">
+            <label for="">Año (10)</label>
+            <input formControlName="year10" type="text" class="form-control" />
+            <div *ngIf="validate('year10').valid" class="text-error">
+              {{ validate("year10").error }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <!-- (click)="modal.close('Close click')" -->
+</div>

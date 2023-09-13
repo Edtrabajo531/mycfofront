@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-12">
+      <button
+        class="btn btn-primary mb-2 float-end"
+        (click)="openModal(modalCreate)"
+      >
+        <i class="fas fa-plus"></i> Nuevo
+      </button>
+      <h4 class="">{{ title }}</h4>
+    </div>
+  </div>
+  
+  <app-table
+    (sendToF)="receivedToChild($event)"
+    [title]="title"
+    [url]="url_table"
+    [columns]="columnsTable"
+    [actions]="actionsTable"
+  >
+  </app-table>
+  
+  <ng-template #modalCreate let-modal>
+    <app-add-rrhh-posicion
+      [edit]="edit"
+      (sendToF)="receivedToChild($event)"
+    ></app-add-rrhh-posicion>
+  </ng-template>
+  
+  <ng-template #modalDelete let-modal>
+    <div class="modal-header bg-danger">
+      <h4 class="modal-title text-white">Atención!</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <p class="text-danger text-center">
+        ¿Esta seguro de eliminar este elemento?
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close()">
+        Cancelar
+      </button>
+      <button type="button" class="btn btn-danger" (click)="delete()">
+        Aceptar
+      </button>
+    </div>
+  </ng-template>
+  

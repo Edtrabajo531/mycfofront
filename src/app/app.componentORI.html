@@ -1,0 +1,99 @@
+
+
+
+
+<div *ngIf="hideN">
+  <router-outlet></router-outlet>
+</div>
+<div *ngIf="hideN">
+  <div class="sidenav" *ngIf="!hideN">
+    <div class="header-sidenav">MYCFO</div>
+    <div class="body-sidenav">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="fas fa-home"></i> Inicio</a
+      >
+      <a routerLink="productos" routerLinkActive="active">
+        <i class="fas fa-list"></i> Productos</a
+      >
+    
+      <a routerLink="usuarios" routerLinkActive="active">
+        <i class="fas fa-users"></i> Usuarios</a
+      >
+      <a routerLink="empresas" routerLinkActive="active">
+        <i class="fa-regular fa-building"></i> Empresas</a
+      >
+      <a routerLink="unidades-ventas" routerLinkActive="active">
+        <i class="fa-solid fa-box"></i> Unidades ventas</a
+      >
+      <a routerLink="parametrizacion-general" routerLinkActive="active">
+        <i class="fa-solid fa-gears"></i> Parametrización General</a
+      >
+
+      <a routerLink="proyeccion-mes-unidad-ventas" routerLinkActive="active">
+        <i class="fa-solid fa-chart-column"></i> P. mes unidad ventas</a
+      >
+      <a routerLink="planes" routerLinkActive="active">
+        <i class="fa-solid fa-layer-group"></i> Planes</a
+      >
+      
+    </div>
+  </div>
+
+  <div class="main">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-p">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fas fa-user"></i> {{ user.name }}
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-lg-end"
+                style="z-index: 40"
+                aria-labelledby="navbarDropdown"
+              >
+                <li>
+                  <a class="dropdown-item">{{ user.email }}</a>
+                </li>
+
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#" (click)="logout()"
+                    >Cerrar sesión</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

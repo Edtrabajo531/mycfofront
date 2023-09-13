@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-12">
+    <h4 class="">{{ title }}</h4>
+  </div>
+</div>
+<app-table
+  *ngIf="loaded"
+  [nameDataResponse]="nameDataResponse"
+  [title]="title"
+  [url]="url_table"
+  [columns]="columnsTable"
+  [actions]="actionsTable"
+  [footerTotales]="true"
+>
+</app-table>

@@ -1,0 +1,104 @@
+<div class="relative">
+ 
+  <div class="loader-content" *ngIf="loading">
+    <div></div>
+  </div>
+
+  <div class="" style="min-height: 200px">
+    <form
+      *ngIf="loadedForm"
+      [formGroup]="form"
+      (ngSubmit)="store()"
+      autocomplete="off"
+    >
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <span class="me-1" *ngIf="edit?.id">Editar</span>
+          <span class="me-1" *ngIf="!edit?.id">Crear</span>
+          recurso humano
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- (change)="changeEmp($event)" -->
+          <div class="col-xxl-4 col-xl-4 col-lg-6 mb-2">
+            <label for="">Nro. empleados</label>
+            <input
+            appAutoFocus
+              formControlName="empleados"
+              type="text"
+              class="form-control"
+            />
+            <div *ngIf="validate('empleados').valid" class="text-error">
+              {{ validate("empleados").error }}
+            </div>
+          </div>
+
+          <div class="col-xxl-4 col-xl-4 col-lg-6 mb-2">
+            <label for="">Sueldo</label>
+            <input formControlName="sueldo" type="text" class="form-control" />
+            <div *ngIf="validate('sueldo').valid" class="text-error">
+              {{ validate("sueldo").error }}
+            </div>
+          </div>
+
+          <div class="col-xxl-4 col-xl-4 col-lg-6 mb-2">
+            <label for="">Area</label>
+            <ng-select  formControlName="area_id">
+              <ng-option *ngFor="let emp of areas" [value]="emp.id"
+                >{{ emp.area }} </ng-option
+              >
+            </ng-select>
+            <div *ngIf="validate('area_id').valid" class="text-error">
+              {{ validate("area_id").error }}
+            </div>
+          </div>
+
+          <div class="col-xxl-4 col-xl-4 col-lg-6 mb-2">
+            <label for="">Posición</label>
+            <ng-select formControlName="posicion_id">
+              <ng-option *ngFor="let emp of posiciones" [value]="emp.id"
+                >{{ emp.posicion }}</ng-option
+              >
+            </ng-select>
+            <div *ngIf="validate('posicion_id').valid" class="text-error">
+              {{ validate("posicion_id").error }}
+            </div>
+          </div>
+
+       
+
+          <div class="col-xxl-4 col-xl-4 col-lg-6 mb-2">
+            <label for="">Empresa</label>
+            <!-- <ng-select formControlName="empresa_id">
+              <ng-option *ngFor="let emp of empresas" [value]="emp.id"
+                >{{ emp.nombre }}</ng-option
+              >
+            </ng-select> -->
+            <select readonly formControlName="empresa_id" class="form-control">
+              <option *ngFor="let e of empresas" [value]="e.id">
+                {{ e.nombre }}
+              </option>
+            </select>
+            <div *ngIf="validate('empresa_id').valid" class="text-error">
+              {{ validate("empresa_id").error }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <!-- (click)="modal.close('Close click')" -->
+</div>

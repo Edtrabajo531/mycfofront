@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-12">
+    <button [ngClass]="{'disabled':!empresa_id}"
+      class="btn btn-primary mb-2 float-end"
+      (click)="openModal(modalCreate)"
+    >
+      <i class="fas fa-plus"></i> Nuevo
+    </button>
+    <h4 class="">{{ title }}</h4>
+  </div>
+</div>
+
+<p *ngIf="!empresa_id" class='text-warning text-right'> <i class='fas fa-exclamation'></i> Debe agregar almenos una empresa antes de poder usar este panel</p>
+
+<app-table
+  (sendToF)="receivedToChild($event)"
+  [title]="title"
+  [url]="url_table"
+  [columns]="columnsTable"
+  [actions]="actionsTable"
+  [nameDataResponse]="nameDataResponse"
+>
+</app-table>
+
+<ng-template #modalCreate let-modal>
+  <app-add-estructura-apex
+    [empresa_id]="empresa_id"
+
+    [empresas]="empresas"
+    [tiposactivos]="tiposactivos"
+    [edit]="edit"
+    (sendToF)="receivedToChild($event)"
+  ></app-add-estructura-apex>
+</ng-template>
+
+<ng-template #modalDelete let-modal>
+  <div class="modal-header bg-danger">
+    <h4 class="modal-title text-white">Atención!</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p class="text-danger text-center">
+      ¿Esta seguro de eliminar este elemento?
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">
+      Cancelar
+    </button>
+    <button type="button" class="btn btn-danger" (click)="delete()">
+      Aceptar
+    </button>
+  </div>
+</ng-template>

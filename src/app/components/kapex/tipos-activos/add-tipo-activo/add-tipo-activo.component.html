@@ -1,0 +1,77 @@
+<div class="relative">
+  <div class="loader-content" *ngIf="loading">
+    <div></div>
+  </div>
+
+  <div class="" style="min-height: 200px">
+    <form
+      *ngIf="loadedForm"
+      [formGroup]="form"
+      (ngSubmit)="store()"
+      autocomplete="off"
+    >
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <span class="me-1" *ngIf="edit?.id">Editar</span>
+          <span class="me-1" *ngIf="!edit?.id">Crear</span>
+          tipo activo
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 mb-2">
+            <label for="">Tipo</label>
+            <input
+              appAutoFocus
+              formControlName="tipo"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('tipo').valid" class="text-error">
+              {{ validate("tipo").error }}
+            </div>
+          </div>
+          <div class="col-12 mb-2">
+            <label for="">Años</label>
+            <input
+              
+              formControlName="annos"
+              type="text"
+              class="form-control"
+              maxlength="3"
+            />
+            <div *ngIf="validate('annos').valid" class="text-error">
+              {{ validate("annos").error }}
+            </div>
+          </div>
+
+          <div class="col-12 mb-2">
+            <label for="">Categoría</label>
+            <select formControlName="categoria" name="" id="" class="form-control">
+              <option value="1">Tangible</option>
+              <option value="2">Intangible</option>
+
+            </select>
+            <div *ngIf="validate('categoria').valid" class="text-error">
+              {{ validate("categoria").error }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <!-- (click)="modal.close('Close click')" -->
+</div>

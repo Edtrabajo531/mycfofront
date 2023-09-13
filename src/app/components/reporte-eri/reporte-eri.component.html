@@ -1,0 +1,284 @@
+<div class="loader-content" *ngIf="loading">
+  <div></div>
+</div>
+<div class="row mb-2">
+  <div class="col-12">
+    <a [href]="api_url+'eri-excel?beareruserid='+user.id+'&empresa_id='+empresa_id" class="btn btn-primary float-right"> <i class='fas fa-download'></i> Excel</a>
+    <h4 class="">{{ title }}</h4>
+    <!-- <button (click)="downloadExcel()" type="button" class="btn btn-danger">xaxax</button> -->
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table
+    *ngIf="loaded"
+    class="table table-bordered bg-white m-0 table-eri"
+    style="white-space: nowrap; font-size: 12px; color: black !important"
+  >
+  <tr>
+    <th>
+     
+    </th>
+    <th colspan="12">
+      Meses
+    </th>
+    <th colspan="10">
+      Años
+    </th>
+  </tr>
+    <tr>
+      <th> R. FINANCIEROS</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+    </tr>
+    <tr>
+      <td class="font-500">Ventas</td>
+      <td *ngFor="let value of getArray(data.TotalVentasMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.TotalVentasAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>Descuentos en ventas</td>
+      <td *ngFor="let value of getArray(data.DescuentosEnVentasMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.DescuentosEnVentasAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>Ingresos netos</td>
+      <td *ngFor="let value of getArray(data.IngresosNetosMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.IngresosNetosAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="23"></td>
+    </tr>
+    <!-- COSTO VENTA -->
+    <tr>
+      <td class="font-500">Costo de ventas</td>
+      <td *ngFor="let value of getArray(data.TotalCostosMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.CostoVentasAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+
+    <tr>
+      <td>Comisiones ventas</td>
+      <td *ngFor="let value of getArray(data.ComisionEnVentasMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.ComisionEnVentasAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+
+    <tr>
+      <td>Contribución marginal</td>
+      <td *ngFor="let value of getArray(data.ContribucionMarginalMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td
+        *ngFor="
+          let value of getArray(data.contribucionMarginalAnnos)
+        "
+      >
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>% Contribución marginal</td>
+      <td
+        *ngFor="let value of getArray(data.porcentaje_ContribucionMarginalMes)"
+      >
+        {{ formatNumber(value) }}
+      </td>
+      <td
+        *ngFor="
+          let value of getArray(data.porcentaje_ContribucionMarginalAnnos)
+        "
+      >
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="23"></td>
+    </tr>
+
+    <!-- RRHH -->
+    <tr>
+      <td class="font-500">RRHH</td>
+      <td *ngFor="let value of getArray(data.RRHH_Mes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.RRHH_Annos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>Gastos operación</td>
+      <td *ngFor="let value of getArray(data.GastoOperativoMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.gastoOperativoAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>EBITDA mes</td>
+      <td *ngFor="let value of getArray(data.EBITDA_Mes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.EBITDA_Annos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>% EBITDA mes</td>
+      <td *ngFor="let value of getArray(data.porcentaje_EBITDA_Mes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.porcentaje_EBITDA_Annos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="23"></td>
+    </tr>
+
+    <tr>
+      <td class="font-500">D&A</td>
+      <td *ngFor="let value of getArray(data.D_A_Mes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.D_A_Annos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>Amortizaciones</td>
+      <td *ngFor="let value of getArray(data.AmortizacionMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.AmortizacionAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>EBIT</td>
+      <td *ngFor="let value of getArray(data.EBIT_Mes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.EBIT_Annos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>% EBIT</td>
+      <td *ngFor="let value of getArray(data.porcentaje_EBIT_Mes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.porcentaje_EBT_Annos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="23"></td>
+    </tr>
+    <!-- Gastos financieros -->
+
+    <tr>
+      <td class="font-500">Gastos financieros</td>
+      <td *ngFor="let value of getArray(data.GastosFinancierosMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.gastosFinancierosAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>EBT</td>
+      <td *ngFor="let value of getArray(data.EBT_Mes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.EBT_Anno)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>% EBT</td>
+      <td *ngFor="let value of getArray(data.porcentaje_EBT_Mes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.porcentaje_EBT_Annos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="23"></td>
+    </tr>
+
+    <tr>
+      <td class="font-500">Impuestos renta</td>
+      <td *ngFor="let value of getArray(data.ImpuestoRentarMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.ImpuestoRentaAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+
+   
+    <tr>
+      <td>Utilidad neta mes</td>
+      <td *ngFor="let value of getArray(data.UtilidadNetaMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.UtilidadNetaAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr>
+    <tr>
+      <td>% Utilidad neta mes</td>
+      <td *ngFor="let value of getArray(data.porcentaje_UtilidadNetaMes)">
+        {{ formatNumber(value) }}
+      </td>
+      <td *ngFor="let value of getArray(data.porcentaje_UtilidadNetaAnnos)">
+        {{ formatNumber(value) }}
+      </td>
+    </tr> 
+  </table>
+</div>
+<br />

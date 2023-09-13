@@ -1,0 +1,98 @@
+<div class="relative">
+  <div class="loader-content" *ngIf="loading">
+    <div></div>
+  </div>
+  <div class="" style="min-height: 200px">
+    <form
+      *ngIf="loadedForm"
+      [formGroup]="form"
+      (ngSubmit)="store()"
+      autocomplete="off"
+    >
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <span class="me-1" *ngIf="edit?.id">Editar</span>
+          <span class="me-1" *ngIf="!edit?.id">Crear</span>
+          producto
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-4 mb-2">
+            <label for="">Nombre producto</label>
+            <input  appAutoFocus formControlName="nombre" type="text" class="form-control" />
+            <div *ngIf="validate('nombre').valid" class="text-error">
+              {{ validate("nombre").error }}
+            </div>
+          </div>
+          <div class="col-4 mb-2">
+            <label for="">Unidad</label>
+            <select
+             
+              formControlName="unidad_venta_id"
+              class="form-control"
+            >
+              <!-- <option value=""></option> -->
+              <option *ngFor="let u of unidades" [value]="u.id">
+                {{ u.nombre }}
+              </option>
+            </select>
+            <div *ngIf="validate('unidad_venta_id').valid" class="text-error">
+              {{ validate("unidad_venta_id").error }}
+            </div>
+          </div>
+          
+
+          <div class="col-4 mb-2">
+            <label for="">Precio venta</label>
+            <input
+              formControlName="precio_venta"
+              type="text"
+              class="form-control"
+            />
+            <div *ngIf="validate('precio_venta').valid" class="text-error">
+              {{ validate("precio_venta").error }}
+            </div>
+          </div>
+          <div class="col-4 mb-2">
+            <label for="">Costo unitario</label>
+            <input
+              formControlName="costo_unitario"
+              type="text"
+              class="form-control"
+            />
+            <div *ngIf="validate('costo_unitario').valid" class="text-error">
+              {{ validate("costo_unitario").error }}
+            </div>
+          </div>
+          <div class="col-4 mb-2">
+            <label for="">Empresa</label>
+
+            <select readonly formControlName="empresa_id" class="form-control">
+              <option *ngFor="let e of empresas" [value]="e.id">
+                {{ e.nombre }}
+              </option>
+            </select>
+           
+            <div *ngIf="validate('empresa_id').valid" class="text-error">
+              {{ validate("empresa_id").error }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <!-- (click)="modal.close('Close click')" -->
+</div>

@@ -1,0 +1,169 @@
+<div class="loader-lg" *ngIf="loading">
+  <div></div>
+</div>
+
+<!-- <h1 class=''> {{url}} </h1> -->
+<form (submit)="filtrar($event)">
+  <app-filter-basic
+    *ngIf="showFiltros"
+    [filtros_a_usar]="filtros_a_usar"
+    [data_filtros]="data_filtros"
+  ></app-filter-basic>
+</form>
+
+<div class="input-group float-end mb-2" style="max-width: 400px">
+  <span class="input-group-text" id="basic-addon1"> Búsqueda general </span>
+  <input
+    class="form-control"
+    matInput
+    (keyup)="doFilter($event)"
+    placeholder=""
+    #input
+  />
+</div>
+
+<!-- <div>
+  <mat-form-field>
+    <input style="width: 300px;" matInput type="text" (keyup)="doFilter($event)" placeholder="Buscar:" [ngClass]="'form-control'"> 
+  </mat-form-field>
+</div> -->
+
+<div class="table-responsive" style="width: 100%">
+  <table
+    *ngIf="loaded && !footerTotales || dataCount == 0"
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    matSort
+  >
+    <ng-container *ngFor="let c of columns" [matColumnDef]="c.field">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ c.name }}</th>
+
+      <td mat-cell *matCellDef="let element" style="white-space: nowrap">
+        <div *ngIf="c.field == 'actions'">
+          <button
+            *ngFor="let a of actions"
+            [ngbTooltip]="a.tooltip"
+            (click)="sendToFather(a.function, element)"
+            type="button"
+            [class]="'me-1 btn btn-sm' + ' ' + a.class"
+          >
+            <span *ngIf="a.ico">
+              <i [class]="'fas ' + a.ico"></i>
+            </span>
+            <span *ngIf="a.nombre">
+              {{ a.nombre }}
+            </span>
+          </button>
+        </div>
+        <div class="" *ngIf="c.field != 'actions'">
+          <div *ngIf="c.type == 'array'">
+            {{ for(element[c.field]) }}
+          </div>
+          <div *ngIf="c.type == 'number'">
+            {{ formatNumber(element[c.field]) }}
+          </div>
+          <div *ngIf="c.type == 'date'">
+            {{ formatDate(element[c.field]) }}
+          </div>
+          <div *ngIf="c.type == 'dateComplete'">
+            {{ formatDate(element[c.field]) }}
+          </div>
+          <div
+            *ngIf="
+              c.type != 'number' &&
+              c.type != 'date' &&
+              c.type != 'dateComplete' &&
+              c.type != 'array'
+            "
+          >
+            {{ element[c.field] }}
+          </div>
+        </div>
+      </td>
+
+      
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+   
+  </table>
+
+  <!-- TABLA SUMA TOTALES -->
+
+  <table
+    *ngIf="loaded && footerTotales && dataCount != 0"
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    matSort
+  >
+    <ng-container *ngFor="let c of columns" [matColumnDef]="c.field">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ c.name }}</th>
+
+      <td mat-cell *matCellDef="let element" style="white-space: nowrap">
+        <div *ngIf="c.field == 'actions'">
+          <button
+            *ngFor="let a of actions"
+            [ngbTooltip]="a.tooltip"
+            (click)="sendToFather(a.function, element)"
+            type="button"
+            [class]="'me-1 btn btn-sm' + ' ' + a.class"
+          >
+            <span *ngIf="a.ico">
+              <i [class]="'fas ' + a.ico"></i>
+            </span>
+            <span *ngIf="a.nombre">
+              {{ a.nombre }}
+            </span>
+          </button>
+        </div>
+        <div class="" *ngIf="c.field != 'actions'">
+          <div *ngIf="c.type == 'array'">
+            {{ for(element[c.field]) }}
+          </div>
+          <div *ngIf="c.type == 'number'">
+            {{ formatNumber(element[c.field]) }}
+          </div>
+          <div *ngIf="c.type == 'date'">
+            {{ formatDate(element[c.field]) }}
+          </div>
+          <div *ngIf="c.type == 'dateComplete'">
+            {{ formatDate(element[c.field]) }}
+          </div>
+          <div
+            *ngIf="
+              c.type != 'number' &&
+              c.type != 'date' &&
+              c.type != 'dateComplete' &&
+              c.type != 'array'
+            "
+          >
+            {{ element[c.field] }}
+          </div>
+        </div>
+      </td>
+
+      <td class="font-500" mat-footer-cell *matFooterCellDef>
+        {{ sumaTotal(c) }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr
+      mat-footer-row
+      *matFooterRowDef="displayedColumns; sticky: true"
+    ></tr>
+  </table>
+</div>
+
+<mat-paginator
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  [length]="10"
+></mat-paginator>

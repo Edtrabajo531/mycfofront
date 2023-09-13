@@ -1,0 +1,68 @@
+<div class="relative">
+  <div class="loader-content" *ngIf="loading">
+    <div></div>
+  </div>
+
+  <div class="" style="min-height: 200px">
+    <form
+      *ngIf="loadedForm"
+      [formGroup]="form"
+      (ngSubmit)="store()"
+      autocomplete="off"
+    >
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <span class="me-1" *ngIf="edit?.id">Editar</span>
+          <span class="me-1" *ngIf="!edit?.id">Crear</span>
+          unidad venta
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+        
+          <div class="col-4 mb-2">
+            <label for="">Nombre</label>
+            <input
+              formControlName="nombre"
+              type="text"
+              class="form-control"
+              maxlength="40"
+              ngbAutofocus
+            />
+            <div *ngIf="validate('nombre').valid" class="text-error">
+              {{ validate("nombre").error }}
+            </div>
+          </div>
+
+          <div class="col-4 mb-2">
+            <label for="">Sigla</label>
+           
+            <input
+              formControlName="sigla"
+              type="text"
+              class="form-control"
+              maxlength="40"
+            />
+            <div *ngIf="validate('sigla').valid" class="text-error">
+              {{ validate("sigla").error }}
+            </div>
+          </div>
+       
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <!-- (click)="modal.close('Close click')" -->
+</div>

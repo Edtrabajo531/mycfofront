@@ -1,0 +1,24 @@
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" *ngClass="{'bg-danger':type == 'danger','bg-warning':type == 'warning', 'bg-info':type == 'info'}">
+        <h5 class="modal-title"> Atención </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Esta seguro de eliminar este elemento?</p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary">
+          Cancelar
+        </button>
+        <button (click)="confirm()" type="button" class="btn" *ngClass="{'bg-danger':type == 'danger','bg-warning':type == 'warning', 'btn-info':type == 'info'}">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,431 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* --bg-oliva: #6c782a;
+  --bg-oliva-b: #454e0f;
+  --bg-green: #3e6b77;
+  --bg-green-b: #234650; */
+  --bg-green-l: #14bb14;
+  --bg-green: #1caf9c;
+  --bg-green-b: #0f5e54;
+  --bg-danger: #c20a0a;
+
+  --btn-green: #21be70;
+  --btn-green-b: #0b990b;
+
+  --btn-yellow: #ffd700;
+  --btn-yellow-b: #ecb501;
+}
+/* .main-sidebar{
+  background: linear-gradient(to right, var(--bg-green), var(--bg-green-b));
+}
+
+.main-sidebar .nav-link{
+  color: white !important;
+} */
+
+/* cards modal */
+.modal-header {
+  padding: 10px 20px 10px 20px;
+  background: white;
+  color: var(--bg-green) !important;
+  font-size: 15px !important;
+}
+
+.modal-header .modal-title {
+  /* font-weight: 400; */
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.modal-header.bg-danger {
+  background: var(--bg-danger) !important;
+  color: white !important;
+}
+/* btns */
+
+.btn-danger{
+  border-color: #c20a0a;
+}
+.btn-primary {
+  background: var(--btn-green) !important;
+  border-color: var(--btn-green-b) !important;
+  text-shadow: 1px 1px 2px var(--btn-green-b);
+}
+
+.btn-primary:hover {
+  background: var(--btn-green-b) !important;
+  border-color: var(--btn-green-b) !important;
+}
+
+.btn-secondary {
+  background: var(--btn-yellow) !important;
+  border-color: var(--btn-yellow-b) !important;
+  text-shadow: 1px 1px 2px var(--btn-yellow-b);
+  color: rgb(37, 37, 37) !important;
+}
+
+.btn-secondary:hover {
+  background: var(--btn-yellow-b) !important;
+  border-color: var(--btn-yellow-b) !important;
+  color: rgb(15, 15, 15) !important;
+
+}
+
+/* Backgrounds */
+
+body {
+  /* background: rgba(173, 173, 171, 0.063); */
+}
+
+/* The sidebar menu */
+.navbar-p {
+  background: linear-gradient(to bottom, white, rgb(238, 238, 238));
+
+  border-bottom: 1px rgb(209, 209, 209) solid;
+  box-shadow: 3px 3px 4px rgba(122, 122, 122, 0.24);
+  z-index: 3;
+  color: var(--bg-green) !important;
+}
+
+.navbar-p a.nav-link {
+  color: var(--bg-green) !important;
+}
+
+.sidenav {
+  height: 100vh; /* Full-height: remove this if you want "auto" height */
+  width: 220px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background: linear-gradient(to right, var(--bg-green), var(--bg-green-b));
+  /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  border-right: 1px rgb(209, 209, 209) solid;
+  box-shadow: 3px 3px 4px rgba(122, 122, 122, 0.24);
+}
+
+.header-sidenav {
+  background: linear-gradient(to bottom, white, rgb(238, 238, 238));
+
+  color: var(--bg-green) !important;
+  color: rgb(110, 110, 110);
+  font-size: 20px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-weight: 500; */
+  /* text-shadow: 1px 1px 1px black; */
+}
+
+/* text */
+.text-primary {
+  color: var(--bg-green) !important;
+}
+
+.body-sidenav {
+  top: 80px;
+  position: sticky;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #ffffff;
+  display: block;
+  text-shadow: 1px 1px 2px var(--bg-green-b);
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+  margin-left: 220px; /* Same as the width of the sidebar */
+  /* */
+}
+.content {
+  padding: 20px 30px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+.body-sidenav .active {
+  background: rgba(255, 255, 255, 0.13) !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+table.table-form th {
+  font-weight: 500;
+  text-align: center !important;
+}
+
+.mat-mdc-table {
+  background: white !important;
+}
+
+.mat-mdc-table thead {
+  background: white !important;
+  border-bottom: solid black 2px !important;
+}
+
+.mat-mdc-table tr th {
+  color: black !important;
+}
+.mat-mdc-table tr td {
+  color: black !important;
+}
+
+/* loader */
+
+.loader-lg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.281);
+}
+
+.loader-lg div {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--bg-green);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  z-index: 9999;
+}
+
+.loader-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  background: rgba(190, 190, 190, 0.26);
+}
+
+.loader-content div {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--bg-green);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  z-index: 9999;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* loader fin */
+.relative {
+  position: relative;
+}
+/* TEXT */
+.text-error {
+  font-size: 12px;
+  color: red;
+}
+
+.modal-backdrop {
+  z-index: 3;
+}
+
+.modal-backdrop {
+  z-index: 2 !important;
+}
+
+.mat-mdc-table {
+  border: solid 1px rgb(201, 201, 201) !important;
+  border-bottom: none !important;
+}
+.mat-mdc-paginator {
+  border: solid 1px rgb(201, 201, 201) !important;
+  border-top: none !important;
+}
+/* input table */
+
+.card {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.103);
+}
+
+.input-group-text {
+  background: white !important;
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar {
+  height: 14px;
+  width: 14px;
+  background: linear-gradient(lo left, gray, rgb(202, 202, 202));
+  border-radius: 6px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: rgb(180, 180, 180);
+  border-radius: 2px;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, white, rgb(216, 216, 216));
+  border: solid 0.5px rgb(180, 180, 180);
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(160, 160, 160);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(to bottom, white, rgb(216, 216, 216));
+  border: solid 0.5px rgb(180, 180, 180);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+}
+
+.apexcharts-toolbar {
+  z-index: 1 !important;
+}
+
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important;
+}
+
+
+::ng-deep .ng-dropdown-panel {
+  z-index: 9999999!important;
+}
+
+
+/* layout */
+.nav-link{
+  font-size: 15px !important;
+}
+.nav-link.active{
+  background: rgba(255, 255, 255, 0.205) !important;
+  color: white !important;
+}
+
+
+/* .brand-text{
+  display: none;
+}
+.sidebar-collapse .logo-side{
+  display: none;
+}
+.sidebar-collapse .brand-text{
+  display:;
+
+} */
+
+label{
+  margin: 0 !important;  
+  font-weight: 500 !important;
+}
+
+.nav-treeview{
+  padding-left: 15px !important;
+}
+
+.card{
+  border:solid 1px rgb(223, 220, 220);
+}
+
+.card-footer{
+  border-top: solid 1px rgb(223, 220, 220);
+}
+
+.navbar  .ng-select-container{
+  padding: 0 !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  font-size: 14px !important;
+  margin-top: 4.5px;
+}
+
+/* .navbar  .ng-select{
+  padding: 0 !important;
+  height: 14px !important;
+  background: blue !important;
+} 
+
+
+.navbar  .ng-value-container{
+  padding: 0 !important;
+  height: 14px !important;
+  background: red !important;
+  margin: 0 !important;
+} */
+
+.mat-sort-header-container{
+  white-space: nowrap;
+
+} 
+
+.nav-item .nav-treeview{
+  display: none !important;
+}
+
+.nav-item.menu-open .nav-treeview{
+  display: block !important;
+}
+/* <li class="" routerLinkActive="menu-is-opening menu-open"> */
+.font-500{
+  font-weight: 500 !important;
+
+}
+
+.table th{
+  font-weight: 500;
+}

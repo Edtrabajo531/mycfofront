@@ -1,0 +1,1447 @@
+<div class="relative">
+  <div class="loader-content" *ngIf="loading">
+    <div></div>
+  </div>
+
+  <div class="" style="min-height: 200px">
+    <form
+      *ngIf="loadedForm"
+      [formGroup]="form"
+      (ngSubmit)="store()"
+      autocomplete="off"
+    >
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <span class="me-1" *ngIf="edit?.id">Editar</span>
+          <span class="me-1" *ngIf="!edit?.id">Agregar</span>
+          Configuración empresa
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-4 mb-2">
+            <label for="">Empresa</label>
+
+            <input
+              [value]="edit.empresa"
+              *ngIf="edit?.id"
+              type="text"
+              class="form-control"
+              disabled="true"
+            />
+            <select
+              *ngIf="!edit?.id"
+              appAutoFocus
+              formControlName="empresa_id"
+              class="form-control"
+            >
+              <!-- <option value=""></option> -->
+              <option *ngFor="let e of empresas" [value]="e.id">
+                {{ e.nombre }}
+              </option>
+            </select>
+            <div *ngIf="validate('empresa_id').valid" class="text-error">
+              {{ validate("empresa_id").error }}
+            </div>
+          </div>
+        </div>
+        <br />
+        <h5 class=" ">Hipótesis macroeconómicas</h5>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-2">
+              <div class="card-body">
+                <h6 class="text-secondary">% Inflación</h6>
+
+                <div class="row">
+                  <div class="col mb-2">
+                    <label for="">Año 1</label>
+                    <input
+                      formControlName="inf_year1"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('inf_year1').valid" class="text-error">
+                      {{ validate("inf_year1").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 2</label>
+
+                    <input
+                      formControlName="inf_year2"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('inf_year2').valid" class="text-error">
+                      {{ validate("inf_year2").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 3</label>
+
+                    <input
+                      formControlName="inf_year3"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('inf_year3').valid" class="text-error">
+                      {{ validate("inf_year3").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 4</label>
+
+                    <input
+                      formControlName="inf_year4"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('inf_year4').valid" class="text-error">
+                      {{ validate("inf_year4").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 5</label>
+
+                    <input
+                      formControlName="inf_year5"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('inf_year5').valid" class="text-error">
+                      {{ validate("inf_year5").error }}
+                    </div>
+                  </div>
+
+                  <div class="col mb-2">
+                    <label for="">Año 6</label>
+                    <input
+                      formControlName="inf_year6"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('inf_year6').valid" class="text-error">
+                      {{ validate("inf_year6").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 7</label>
+
+                    <input
+                      formControlName="inf_year7"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('inf_year7').valid" class="text-error">
+                      {{ validate("inf_year7").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 8</label>
+
+                    <input
+                      formControlName="inf_year8"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('inf_year8').valid" class="text-error">
+                      {{ validate("inf_year8").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 9</label>
+
+                    <input
+                      formControlName="inf_year9"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('inf_year9').valid" class="text-error">
+                      {{ validate("inf_year9").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 10</label>
+
+                    <input
+                      formControlName="inf_year10"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inf_year10').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inf_year10").error }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card mb-2">
+              <div class="card-body">
+                <h6 class="text-secondary">% Impuesto a la Renta</h6>
+
+                <div class="row">
+                  <div class="col mb-2">
+                    <label for="">Año 1</label>
+                    <input
+                      formControlName="ir_year1"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('ir_year1').valid" class="text-error">
+                      {{ validate("ir_year1").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 2</label>
+
+                    <input
+                      formControlName="ir_year2"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('ir_year2').valid" class="text-error">
+                      {{ validate("ir_year2").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 3</label>
+
+                    <input
+                      formControlName="ir_year3"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('ir_year3').valid" class="text-error">
+                      {{ validate("ir_year3").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 4</label>
+
+                    <input
+                      formControlName="ir_year4"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('ir_year4').valid" class="text-error">
+                      {{ validate("ir_year4").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 5</label>
+
+                    <input
+                      formControlName="ir_year5"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('ir_year5').valid" class="text-error">
+                      {{ validate("ir_year5").error }}
+                    </div>
+                  </div>
+
+                  <div class="col mb-2">
+                    <label for="">Año 6</label>
+                    <input
+                      formControlName="ir_year6"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('ir_year6').valid" class="text-error">
+                      {{ validate("ir_year6").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 7</label>
+
+                    <input
+                      formControlName="ir_year7"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('ir_year7').valid" class="text-error">
+                      {{ validate("ir_year7").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 8</label>
+
+                    <input
+                      formControlName="ir_year8"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('ir_year8').valid" class="text-error">
+                      {{ validate("ir_year8").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 9</label>
+
+                    <input
+                      formControlName="ir_year9"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('ir_year9').valid" class="text-error">
+                      {{ validate("ir_year9").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 10</label>
+
+                    <input
+                      formControlName="ir_year10"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div *ngIf="validate('ir_year10').valid" class="text-error">
+                      {{ validate("ir_year10").error }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <h5 class=" ">Premisas Operativas</h5>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-2">
+              <div class="card-body">
+                <h6 class="text-secondary">% Incrementos de Precios Anuales</h6>
+
+                <div class="row">
+                  <div class="col mb-2">
+                    <label for="">Año 1</label>
+                    <input
+                      formControlName="inpa_year1"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inpa_year1').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inpa_year1").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 2</label>
+
+                    <input
+                      formControlName="inpa_year2"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inpa_year2').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inpa_year2").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 3</label>
+
+                    <input
+                      formControlName="inpa_year3"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inpa_year3').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inpa_year3").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 4</label>
+
+                    <input
+                      formControlName="inpa_year4"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inpa_year4').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inpa_year4").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 5</label>
+
+                    <input
+                      formControlName="inpa_year5"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inpa_year5').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inpa_year5").error }}
+                    </div>
+                  </div>
+
+                  <div class="col mb-2">
+                    <label for="">Año 6</label>
+                    <input
+                      formControlName="inpa_year6"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inpa_year6').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inpa_year6").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 7</label>
+
+                    <input
+                      formControlName="inpa_year7"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inpa_year7').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inpa_year7").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 8</label>
+
+                    <input
+                      formControlName="inpa_year8"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inpa_year8').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inpa_year8").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 9</label>
+
+                    <input
+                      formControlName="inpa_year9"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inpa_year9').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inpa_year9").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 10</label>
+
+                    <input
+                      formControlName="inpa_year10"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('inpa_year10').valid"
+                      class="text-error"
+                    >
+                      {{ validate("inpa_year10").error }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card mb-2">
+              <div class="card-body">
+                <h6 class="text-secondary">% Comisión de Ventas</h6>
+
+                <div class="row">
+                  <div class="col mb-2">
+                    <label for="">Año 1</label>
+                    <input
+                      formControlName="comvta_year1"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('comvta_year1').valid"
+                      class="text-error"
+                    >
+                      {{ validate("comvta_year1").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 2</label>
+
+                    <input
+                      formControlName="comvta_year2"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('comvta_year2').valid"
+                      class="text-error"
+                    >
+                      {{ validate("comvta_year2").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 3</label>
+
+                    <input
+                      formControlName="comvta_year3"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('comvta_year3').valid"
+                      class="text-error"
+                    >
+                      {{ validate("comvta_year3").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 4</label>
+
+                    <input
+                      formControlName="comvta_year4"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('comvta_year4').valid"
+                      class="text-error"
+                    >
+                      {{ validate("comvta_year4").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 5</label>
+
+                    <input
+                      formControlName="comvta_year5"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('comvta_year5').valid"
+                      class="text-error"
+                    >
+                      {{ validate("comvta_year5").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 6</label>
+                    <input
+                      formControlName="comvta_year6"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('comvta_year6').valid"
+                      class="text-error"
+                    >
+                      {{ validate("comvta_year6").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 7</label>
+
+                    <input
+                      formControlName="comvta_year7"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('comvta_year7').valid"
+                      class="text-error"
+                    >
+                      {{ validate("comvta_year7").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 8</label>
+
+                    <input
+                      formControlName="comvta_year8"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('comvta_year8').valid"
+                      class="text-error"
+                    >
+                      {{ validate("comvta_year8").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 9</label>
+
+                    <input
+                      formControlName="comvta_year9"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('comvta_year9').valid"
+                      class="text-error"
+                    >
+                      {{ validate("comvta_year9").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 10</label>
+
+                    <input
+                      formControlName="comvta_year10"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('comvta_year10').valid"
+                      class="text-error"
+                    >
+                      {{ validate("comvta_year10").error }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card mb-2">
+              <div class="card-body">
+                <h6 class="text-secondary">% Descuento en ventas</h6>
+
+                <div class="row">
+                  <div class="col mb-2">
+                    <label for="">Año 1</label>
+                    <input
+                      formControlName="desvta_year1"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('desvta_year1').valid"
+                      class="text-error"
+                    >
+                      {{ validate("desvta_year1").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 2</label>
+
+                    <input
+                      formControlName="desvta_year2"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('desvta_year2').valid"
+                      class="text-error"
+                    >
+                      {{ validate("desvta_year2").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 3</label>
+
+                    <input
+                      formControlName="desvta_year3"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('desvta_year3').valid"
+                      class="text-error"
+                    >
+                      {{ validate("desvta_year3").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 4</label>
+
+                    <input
+                      formControlName="desvta_year4"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('desvta_year4').valid"
+                      class="text-error"
+                    >
+                      {{ validate("desvta_year4").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 5</label>
+
+                    <input
+                      formControlName="desvta_year5"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('desvta_year5').valid"
+                      class="text-error"
+                    >
+                      {{ validate("desvta_year5").error }}
+                    </div>
+                  </div>
+
+                  <div class="col mb-2">
+                    <label for="">Año 6</label>
+                    <input
+                      formControlName="desvta_year6"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('desvta_year6').valid"
+                      class="text-error"
+                    >
+                      {{ validate("desvta_year6").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 7</label>
+
+                    <input
+                      formControlName="desvta_year7"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('desvta_year7').valid"
+                      class="text-error"
+                    >
+                      {{ validate("desvta_year7").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 8</label>
+
+                    <input
+                      formControlName="desvta_year8"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('desvta_year8').valid"
+                      class="text-error"
+                    >
+                      {{ validate("desvta_year8").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 9</label>
+
+                    <input
+                      formControlName="desvta_year9"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('desvta_year9').valid"
+                      class="text-error"
+                    >
+                      {{ validate("desvta_year9").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 10</label>
+
+                    <input
+                      formControlName="desvta_year10"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('desvta_year10').valid"
+                      class="text-error"
+                    >
+                      {{ validate("desvta_year10").error }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <h5 class=" ">Premisas recursos humanos</h5>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-2">
+              <div class="card-body">
+                <h6 class="text-secondary">Incrementos % Anual de Salarios</h6>
+
+                <div class="row">
+                  <div class="col mb-2">
+                    <label for="">Año 1</label>
+                    <input
+                      formControlName="insal_year1"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('insal_year1').valid"
+                      class="text-error"
+                    >
+                      {{ validate("insal_year1").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 2</label>
+
+                    <input
+                      formControlName="insal_year2"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('insal_year2').valid"
+                      class="text-error"
+                    >
+                      {{ validate("insal_year2").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 3</label>
+
+                    <input
+                      formControlName="insal_year3"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('insal_year3').valid"
+                      class="text-error"
+                    >
+                      {{ validate("insal_year3").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 4</label>
+
+                    <input
+                      formControlName="insal_year4"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('insal_year4').valid"
+                      class="text-error"
+                    >
+                      {{ validate("insal_year4").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 5</label>
+
+                    <input
+                      formControlName="insal_year5"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('insal_year5').valid"
+                      class="text-error"
+                    >
+                      {{ validate("insal_year5").error }}
+                    </div>
+                  </div>
+
+                  <div class="col mb-2">
+                    <label for="">Año 6</label>
+                    <input
+                      formControlName="insal_year6"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('insal_year6').valid"
+                      class="text-error"
+                    >
+                      {{ validate("insal_year6").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 7</label>
+
+                    <input
+                      formControlName="insal_year7"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('insal_year7').valid"
+                      class="text-error"
+                    >
+                      {{ validate("insal_year7").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 8</label>
+
+                    <input
+                      formControlName="insal_year8"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('insal_year8').valid"
+                      class="text-error"
+                    >
+                      {{ validate("insal_year8").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 9</label>
+
+                    <input
+                      formControlName="insal_year9"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('insal_year9').valid"
+                      class="text-error"
+                    >
+                      {{ validate("insal_year9").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 10</label>
+
+                    <input
+                      formControlName="insal_year10"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('insal_year10').valid"
+                      class="text-error"
+                    >
+                      {{ validate("insal_year10").error }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card mb-2">
+              <div class="card-body">
+                <h6 class="text-secondary">
+                  % Costo Beneficios Sociales Laborales
+                </h6>
+
+                <div class="row">
+                  <div class="col mb-2">
+                    <label for="">Año 1</label>
+                    <input
+                      formControlName="benfso_year1"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('benfso_year1').valid"
+                      class="text-error"
+                    >
+                      {{ validate("benfso_year1").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 2</label>
+
+                    <input
+                      formControlName="benfso_year2"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('benfso_year2').valid"
+                      class="text-error"
+                    >
+                      {{ validate("benfso_year2").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 3</label>
+
+                    <input
+                      formControlName="benfso_year3"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('benfso_year3').valid"
+                      class="text-error"
+                    >
+                      {{ validate("benfso_year3").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 4</label>
+
+                    <input
+                      formControlName="benfso_year4"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('benfso_year4').valid"
+                      class="text-error"
+                    >
+                      {{ validate("benfso_year4").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 5</label>
+
+                    <input
+                      formControlName="benfso_year5"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('benfso_year5').valid"
+                      class="text-error"
+                    >
+                      {{ validate("benfso_year5").error }}
+                    </div>
+                  </div>
+
+                  <div class="col mb-2">
+                    <label for="">Año 6</label>
+                    <input
+                      formControlName="benfso_year6"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('benfso_year6').valid"
+                      class="text-error"
+                    >
+                      {{ validate("benfso_year6").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 7</label>
+
+                    <input
+                      formControlName="benfso_year7"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('benfso_year7').valid"
+                      class="text-error"
+                    >
+                      {{ validate("benfso_year7").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 8</label>
+
+                    <input
+                      formControlName="benfso_year8"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('benfso_year8').valid"
+                      class="text-error"
+                    >
+                      {{ validate("benfso_year8").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 9</label>
+
+                    <input
+                      formControlName="benfso_year9"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('benfso_year9').valid"
+                      class="text-error"
+                    >
+                      {{ validate("benfso_year9").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 10</label>
+
+                    <input
+                      formControlName="benfso_year10"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      placeholder="%"
+                    />
+                    <div
+                      *ngIf="validate('benfso_year10').valid"
+                      class="text-error"
+                    >
+                      {{ validate("benfso_year10").error }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card mb-2">
+              <div class="card-body">
+                <h6 class="text-secondary">Aporte de Socios - Capital</h6>
+
+                <div class="row">
+                  <div class="col mb-2">
+                    <label for="">Año 1</label>
+                    <input
+                      formControlName="apsoc_year1"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                    />
+                    <div
+                      *ngIf="validate('apsoc_year1').valid"
+                      class="text-error"
+                    >
+                      {{ validate("apsoc_year1").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 2</label>
+
+                    <input
+                      formControlName="apsoc_year2"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                    />
+                    <div
+                      *ngIf="validate('apsoc_year2').valid"
+                      class="text-error"
+                    >
+                      {{ validate("apsoc_year2").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 3</label>
+
+                    <input
+                      formControlName="apsoc_year3"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                    />
+                    <div
+                      *ngIf="validate('apsoc_year3').valid"
+                      class="text-error"
+                    >
+                      {{ validate("apsoc_year3").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 4</label>
+
+                    <input
+                      formControlName="apsoc_year4"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                    />
+                    <div
+                      *ngIf="validate('apsoc_year4').valid"
+                      class="text-error"
+                    >
+                      {{ validate("apsoc_year4").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 5</label>
+
+                    <input
+                      formControlName="apsoc_year5"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                    />
+                    <div
+                      *ngIf="validate('apsoc_year5').valid"
+                      class="text-error"
+                    >
+                      {{ validate("apsoc_year5").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 6</label>
+                    <input
+                      formControlName="apsoc_year6"
+                      type="text"
+                      class="form-control"
+                      maxlength="40"
+                    />
+                    <div
+                      *ngIf="validate('apsoc_year6').valid"
+                      class="text-error"
+                    >
+                      {{ validate("apsoc_year6").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 7</label>
+
+                    <input
+                      formControlName="apsoc_year7"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                    />
+                    <div
+                      *ngIf="validate('apsoc_year7').valid"
+                      class="text-error"
+                    >
+                      {{ validate("apsoc_year7").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 8</label>
+
+                    <input
+                      formControlName="apsoc_year8"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                    />
+                    <div
+                      *ngIf="validate('apsoc_year8').valid"
+                      class="text-error"
+                    >
+                      {{ validate("apsoc_year8").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 9</label>
+
+                    <input
+                      formControlName="apsoc_year9"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                    />
+                    <div
+                      *ngIf="validate('apsoc_year9').valid"
+                      class="text-error"
+                    >
+                      {{ validate("apsoc_year9").error }}
+                    </div>
+                  </div>
+                  <div class="col mb-2">
+                    <label for="">Año 10</label>
+
+                    <input
+                      formControlName="apsoc_year10"
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                    />
+                    <div
+                      *ngIf="validate('apsoc_year10').valid"
+                      class="text-error"
+                    >
+                      {{ validate("apsoc_year10").error }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary">
+          <i class="fas fa-times"></i> Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save"></i> Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- (click)="modal.close('Close click')" -->
+</div>

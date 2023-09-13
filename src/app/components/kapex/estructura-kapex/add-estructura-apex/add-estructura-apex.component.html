@@ -1,0 +1,217 @@
+<div class="relative">
+  <div class="loader-content" *ngIf="loading">
+    <div></div>
+  </div>
+
+  <div class="" style="min-height: 200px">
+    <form
+      *ngIf="loadedForm"
+      [formGroup]="form"
+      (ngSubmit)="store()"
+      autocomplete="off"
+    >
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <span class="me-1" *ngIf="edit?.id">Editar</span>
+          <span class="me-1" *ngIf="!edit?.id">Crear</span>
+          estructura capex
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-4 mb-2">
+            <label for="">Nombre</label>
+            <input
+              appAutoFocus
+              formControlName="nombre"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('nombre').valid" class="text-error">
+              {{ validate("nombre").error }}
+            </div>
+          </div>
+          <div class="col-4 mb-2">
+            <label for="">Tipo activo</label>
+
+            <ng-select formControlName="tipo_activo_id">
+              <ng-option *ngFor="let emp of tiposactivos" [value]="emp.id">{{
+                emp.tipo
+              }}</ng-option>
+            </ng-select>
+
+            <div *ngIf="validate('tipo_activo_id').valid" class="text-error">
+              {{ validate("tipo_activo_id").error }}
+            </div>
+          </div>
+          <div class="col-4 mb-2">
+            <label for="">Empresa</label>
+            <select readonly formControlName="empresa_id" class="form-control">
+              <option *ngFor="let e of empresas" [value]="e.id">
+                {{ e.nombre }}
+              </option>
+            </select>
+            <!-- <ng-select formControlName="empresa_id">
+              <ng-option *ngFor="let emp of empresas" [value]="emp.id"
+                >{{ emp.nombre }}
+              </ng-option>
+            </ng-select> -->
+            <div *ngIf="validate('empresa_id').valid" class="text-error">
+              {{ validate("empresa_id").error }}
+            </div>
+          </div>
+
+          
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="">Año 1</label>
+            <input
+              formControlName="year1"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('year1').valid" class="text-error">
+              {{ validate("year1").error }}
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="">Año 2</label>
+            <input
+              formControlName="year2"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('year2').valid" class="text-error">
+              {{ validate("year2").error }}
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="">Año 3</label>
+            <input
+              formControlName="year3"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('year3').valid" class="text-error">
+              {{ validate("year3").error }}
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="">Año 4</label>
+            <input
+              formControlName="year4"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('year4').valid" class="text-error">
+              {{ validate("year4").error }}
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="">Año 5</label>
+            <input
+              formControlName="year5"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('year5').valid" class="text-error">
+              {{ validate("year5").error }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="">Año 6</label>
+            <input
+              formControlName="year6"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('year6').valid" class="text-error">
+              {{ validate("year6").error }}
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="">Año 7</label>
+            <input
+              formControlName="year7"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('year7').valid" class="text-error">
+              {{ validate("year7").error }}
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="">Año 8</label>
+            <input
+              formControlName="year8"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('year8').valid" class="text-error">
+              {{ validate("year8").error }}
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="">Año 9</label>
+            <input
+              formControlName="year9"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('year9').valid" class="text-error">
+              {{ validate("year9").error }}
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="">Año 10</label>
+            <input
+              formControlName="year10"
+              type="text"
+              class="form-control"
+              maxlength="60"
+            />
+            <div *ngIf="validate('year10').valid" class="text-error">
+              {{ validate("year10").error }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <!-- (click)="modal.close('Close click')" -->
+</div>

@@ -1,0 +1,114 @@
+<div class="relative">
+    <div class="loader-content" *ngIf="loading">
+      <div></div>
+    </div>
+  
+    <div class="" style="min-height: 200px">
+      <form
+        *ngIf="loadedForm"
+        [formGroup]="form"
+        (ngSubmit)="store()"
+        autocomplete="off"
+      >
+        <div class="modal-header">
+          <h4 class="modal-title">
+            <span class="me-1" *ngIf="edit?.id">Editar</span>
+            <span class="me-1" *ngIf="!edit?.id">Crear</span>
+            usuario
+          </h4>
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="closeModal()"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-4 mb-2">
+              <label for="">Nombre</label>
+              <input
+              appAutoFocus
+                formControlName="name"
+                type="text"
+                class="form-control"
+                maxlength="40"
+              />
+              <div *ngIf="validate('name').valid" class="text-error">
+                {{ validate("name").error }}
+              </div>
+            </div>
+  
+            <div class="col-4 mb-2">
+              <label for="">Correo</label>
+              <input
+                formControlName="email"
+                type="text"
+                class="form-control"
+                maxlength="40"
+              />
+              <div *ngIf="validate('email').valid" class="text-error">
+                {{ validate("email").error }}
+              </div>
+            </div>
+      
+            <div class="col-4 mb-2">
+              <label for="">Role</label>
+              <select
+                ngbAutofocus
+                formControlName="role_id"
+                class="form-control"
+              >
+                <!-- <option value=""></option> -->
+                <option *ngFor="let e of roles" [value]="e.id">
+                  {{ e.name }}
+                </option>
+              </select>
+              <div *ngIf="validate('role_id').valid" class="text-error">
+                {{ validate("role_id").error }}
+              </div>
+            </div>
+
+            <div class="col-4 mb-2">
+              <label for="">Plan</label>
+              <select
+                ngbAutofocus
+                formControlName="plan_id"
+                class="form-control"
+              >
+                <!-- <option value=""></option> -->
+                <option *ngFor="let e of planes" [value]="e.id">
+                  {{ e.nombre }}
+                </option>
+              </select>
+              <div *ngIf="validate('plan_id').valid" class="text-error">
+                {{ validate("plan_id").error }}
+              </div>
+            </div>
+
+            <div class="col-4 mb-2">
+              <label for="">Contraseña</label>
+              <input
+              formControlName="password"
+              type="password"
+              class="form-control"
+              maxlength="40"
+            />
+              <div *ngIf="validate('password').valid" class="text-error">
+                {{ validate("password").error }}
+              </div>
+            </div>
+    
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button (click)="closeModal()" type="button" class="btn btn-secondary">
+            Cancelar
+          </button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+    <!-- (click)="modal.close('Close click')" -->
+  </div>
+  
